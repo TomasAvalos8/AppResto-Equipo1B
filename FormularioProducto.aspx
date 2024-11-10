@@ -21,7 +21,11 @@
                     <label for="txtPrecio">Precio</label>
                     <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
                 </div>
+            <div>
+            <button class="btn btn-primary" id="btnAtras" onclick="">Atras</button>
             <button class="btn btn-primary" id="btnAceptar" onclick="">Aceptar</button>
+            </div>
+
             </div>
 
     </div>

@@ -34,9 +34,7 @@
                     <asp:TextBox runat="server" type="password" CssClass="form-control" ID="txtContraseña" />
                 </div>
 
-                <a class="btn btn-primary" href="Inicio.aspx" role="button">Ingresar</a>
-
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click" />
                 
             </div>
             <div class="col-4"></div>

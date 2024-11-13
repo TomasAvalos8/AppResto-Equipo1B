@@ -28,7 +28,8 @@
             <div>
             <%--<button class="btn btn-primary" id="btnAtras" onclick="">Atras</button>--%>
             <a class="btn btn-primary me-md-2" href="Productos.aspx" role="button">Atras</a>
-            <button class="btn btn-primary" id="btnAceptar" onclick="">Aceptar</button>
+            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" cssclass="btn btn-primary" />  
+            <%--<button class="btn btn-primary" id="btnAceptar" OnClick="btnAceptar_Click">Aceptar</button>--%>
             </div>
 
             </div>

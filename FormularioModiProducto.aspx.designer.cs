@@ -11,7 +11,7 @@ namespace Resto
 {
 
 
-    public partial class Inicio
+    public partial class FormularioModiProducto
     {
     }
 }

@@ -69,9 +69,9 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="FormularioModiProducto.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Inicio.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Personalizar.aspx" />
     <Content Include="Productos.aspx" />
@@ -93,6 +93,13 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormularioModiProducto.aspx.cs">
+      <DependentUpon>FormularioModiProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioModiProducto.aspx.designer.cs">
+      <DependentUpon>FormularioModiProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioProducto.aspx.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -102,13 +109,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

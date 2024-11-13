@@ -1,14 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="FormularioProducto.aspx.cs" Inherits="Resto.FormularioProducto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="FormularioModiProducto.aspx.cs" Inherits="Resto.FormularioModiProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+
+        <div class="row">
         <div class="col " style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
 
-<%--                <div class="mb-3">
+                <div class="mb-3">
                     <label for="txtId">Id</label>
                     <asp:TextBox runat="server" ID="txtId" CssClass="form-control" />
-                </div>--%>
+                </div>
 
                 <div class="mb-3">
                     <label for="txtNombre">Nombre</label>
@@ -34,7 +35,5 @@
             </div>
 
     </div>
-
-
 
 </asp:Content>

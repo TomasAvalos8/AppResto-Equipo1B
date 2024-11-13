@@ -25,7 +25,7 @@ namespace Resto
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Inicio.aspx");
+                    Response.Redirect("Pedidos.aspx");
                 }
                 else
                 {

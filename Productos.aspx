@@ -30,12 +30,15 @@
                 </asp:GridView>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary" href="FormularioProducto.aspx" role="button">Agregar</a>
+                    <a class="btn btn-outline-primary me-md-2" href="FormularioProducto.aspx" role="button">Agregar</a>
+
+                    <a class="btn btn-outline-primary me-md-2" href="FormularioModiProducto.aspx" role="button">Modificar</a>
+
+                    <%--<button type="button" class="btn btn-outline-primary me-md-2" id="btnModi">Modificar </button>--%>
                 </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-outline-primary me-md-2" id="btnModi">Modificar </button>
-                </div>
+                
+                
 
             </div>
             <div class="tab-pane fade" id="modificar" role="tabpanel">

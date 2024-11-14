@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +13,30 @@ namespace Resto
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
-
-
+            //txtId.Enabled = false;
         }
 
-	}
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Producto nuevo = new Producto();
+            ProductoNegocio negocio = new ProductoNegocio();
+            try
+            {
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDesc.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+
+                negocio.agregarConSP(nuevo);
+
+
+                Response.Redirect("Productos.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+		}
+            }
+
+
+    }
 }

@@ -3,9 +3,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <div class="tab-pane fade show active" id="Productos" role="tabpanel" aria-labelledby="home-tab">
+
+    <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-hover" OnSelectedIndexChanged="CargarTXT">
+
+        <Columns>
+            <asp:CommandField ShowSelectButton="True" />
+            <asp:BoundField HeaderText="Id" DataField="Id" />
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+            <asp:BoundField HeaderText="Precio" DataField="Precio" />
+        </Columns>
+
+    </asp:GridView>
+
+</div>
+
         <div class="row">
         <div class="col " style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
-
                 <div class="mb-3">
                     <label for="txtId">Id</label>
                     <asp:TextBox runat="server" ID="txtId" CssClass="form-control" />
@@ -25,7 +40,7 @@
                     <label for="txtPrecio">Precio</label>
                     <asp:TextBox runat="server" type="number" ID="txtPrecio" CssClass="form-control" />
                 </div>
-
+                 
             <div>
             <%--<button class="btn btn-primary" id="btnAtras" onclick="">Atras</button>--%>
             <a class="btn btn-primary me-md-2" href="Productos.aspx" role="button">Atras</a>
@@ -33,7 +48,6 @@
             </div>
 
             </div>
-
     </div>
 
 </asp:Content>

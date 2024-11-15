@@ -15,6 +15,10 @@ namespace Resto
             if (!IsPostBack)
             {
                 CargaDGV();
+                if (Request.QueryString["Id"] != null)
+                {
+
+                }
             }
         }
 

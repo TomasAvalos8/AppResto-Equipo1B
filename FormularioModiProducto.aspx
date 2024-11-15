@@ -20,7 +20,7 @@
 </div>
 
         <div class="row">
-        <div class="col " style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+        <div class="col-6" style="display:flex; flex-direction:column; justify-content:left; align-items:self-end;">
                 <div class="mb-3">
                     <label for="txtId">Id</label>
                     <asp:TextBox runat="server" ID="txtId" CssClass="form-control" />
@@ -30,6 +30,12 @@
                     <label for="txtNombre">Nombre</label>
                     <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
                 </div>
+                 
+           
+
+            </div>
+
+            <div class="col-5" style="display:flex; flex-direction:column; justify-content:left; align-items:self-start;">
 
                 <div class="mb-3">
                     <label for="txtDesc">Descripcion</label>
@@ -40,14 +46,14 @@
                     <label for="txtPrecio">Precio</label>
                     <asp:TextBox runat="server" type="number" ID="txtPrecio" CssClass="form-control" />
                 </div>
-                 
-            <div>
-            <%--<button class="btn btn-primary" id="btnAtras" onclick="">Atras</button>--%>
-            <a class="btn btn-primary me-md-2" href="Productos.aspx" role="button">Atras</a>
-            <button class="btn btn-primary" id="btnAceptar" onclick="">Aceptar</button>
-            </div>
+                <div>
+                    <%--<button class="btn btn-primary" id="btnAtras" onclick="">Atras</button>--%>
+                    <a class="btn btn-primary me-md-2" href="Productos.aspx" role="button">Atras</a>
+                    <button class="btn btn-primary" id="btnAceptar" onclick="">Aceptar</button>
+                </div>
 
             </div>
     </div>
+
 
 </asp:Content>

@@ -20,9 +20,31 @@ namespace Resto
 
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        //protected void btnAgregar_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("FormularioProducto.aspx", false);
+        //}
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FormularioProducto.aspx", false);
+            Producto nuevo = new Producto();
+            ProductoNegocio negocio = new ProductoNegocio();
+            try
+            {
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDesc.Text;
+                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+
+                negocio.agregarConSP(nuevo);
+
+
+                Response.Redirect("Productos.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
     }
 }

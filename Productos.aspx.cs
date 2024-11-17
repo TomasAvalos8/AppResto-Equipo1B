@@ -42,8 +42,29 @@ namespace Resto
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = ex.Message.Replace("'", "\\'");
+                string script = $"alert('Ocurrio un error: necesita cargar datos para aceptar' );";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "errorAlert",script, true);
+                
             }
+        }
+
+        protected void CargarTXT(object sender, EventArgs e)
+        {
+
+            GridViewRow SelectedRow = dgvProductos.SelectedRow;
+
+            txtMId.Text = SelectedRow.Cells[1].Text;
+            txtMNombre.Text = SelectedRow.Cells[2].Text;
+            txtMDesc.Text = SelectedRow.Cells[3].Text;
+            txtMPrecio.Text = SelectedRow.Cells[4].Text;
+        }
+
+        protected void CargaDGV()
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            dgvProductos.DataSource = negocio.listar();
+            dgvProductos.DataBind();
         }
 
     }

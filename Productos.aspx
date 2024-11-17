@@ -15,13 +15,15 @@
 
 
         </ul>
+      </div>
 
         <div class="tab-content mt-3">
-            <div class="tab-pane fade show active" id="Productos" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="Productos" role="tabpanel" aria-labelledby="home-tab" >
 
-                <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-hover">
+                <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-hover" OnSelectedIndexChanged="CargarTXT">
 
                     <Columns>
+                        <asp:CommandField ShowSelectButton="True" />
                         <asp:BoundField HeaderText="Id" DataField="Id" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                         <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
@@ -38,6 +40,7 @@
                     <button type="button" class="btn btn-outline-primary me-md-2" data-bs-toggle="modal" data-bs-target="#formularioModalModi">Modificar </button>
 
                 </div>
+              </div>
                 <%--FORMULARIO AGREGAR--%>
                 <div class="modal fade" id="formularioModalAgregar" tabindex="-1" aria-labelledby="formularioModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -85,19 +88,19 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="txtNombre" class="form-label">ID</label>
-                                    <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control" />
+                                    <asp:TextBox runat="server" ID="txtMId" CssClass="form-control" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtNombre" class="form-label">Nombre</label>
-                                    <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control" />
+                                    <asp:TextBox runat="server" ID="txtMNombre" CssClass="form-control" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtDesc" class="form-label">Descripción</label>
-                                    <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control" />
+                                    <asp:TextBox runat="server" ID="txtMDesc" CssClass="form-control" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtPrecio" class="form-label">Precio</label>
-                                    <asp:TextBox runat="server" type="number" ID="TextBox3" CssClass="form-control" />
+                                    <asp:TextBox runat="server" type="number" ID="txtMPrecio" CssClass="form-control" />
                                 </div>
                             </div>
 
@@ -108,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-
+       </div>
 
 
 

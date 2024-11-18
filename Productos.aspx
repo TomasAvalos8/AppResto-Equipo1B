@@ -88,7 +88,7 @@
                         { %>
                     <div class="mb-3">
                         <label for="txtMiD" class="form-label">ID</label>
-                        <asp:TextBox runat="server" ID="txtMId" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="txtMId" disabled="true" CssClass="form-control" />
                     </div>
                     <div class="mb-3">
                         <label for="txtmNombre" class="form-label">Nombre</label>
@@ -135,8 +135,12 @@
                     <% if (seleccionado)
                         { %>
                     <div class="mb-3">
+                        <label for="txtEiD" class="form-label">ID</label>
+                        <asp:TextBox runat="server" ID="txtEID" CssClass="form-control" />
+                    </div>
+                    <div class="mb-3">
                         <div class="mb-3 text-center">
-                            <label for="txtPrecio" class="form-label">¿Está seguro que desea eliminar el objeto seleccionado?</label>
+                            <label class="form-label">¿Está seguro que desea eliminar el objeto seleccionado?</label>
                         </div>
                         <div class="d-flex justify-content-around mt-3">
                             <asp:Button ID="btnAceptarEliminar" runat="server" Text="Aceptar" OnClick="btnAceptarEliminar_Click" CssClass="btn btn-primary" />

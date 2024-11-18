@@ -11,6 +11,7 @@ namespace Resto
 {
     public partial class Productos : System.Web.UI.Page
     {
+        //--Seleccionado genera un bool para controlar que este cargado antes de modificar--
         public bool seleccionado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -58,6 +59,7 @@ namespace Resto
             seleccionado = true;
             GridViewRow SelectedRow = dgvProductos.SelectedRow;
 
+            txtEID.Text = SelectedRow.Cells[1].Text;
             txtMId.Text = SelectedRow.Cells[1].Text;
             txtMNombre.Text = SelectedRow.Cells[2].Text;
             txtMDesc.Text = SelectedRow.Cells[3].Text;
@@ -82,7 +84,7 @@ namespace Resto
                 nuevo.Precio = decimal.Parse(txtMPrecio.Text);
                 nuevo.Id=int.Parse(txtMId.Text);
 
-                negocio.modificarConSP(nuevo);
+                //negocio.modificarConSP(nuevo);
 
 
                 Response.Redirect("Productos.aspx", false);
@@ -97,8 +99,26 @@ namespace Resto
            
         }
 
+
         protected void btnAceptarEliminar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Producto nuevo = new Producto();
+                ProductoNegocio negocio = new ProductoNegocio();
+
+                nuevo.Id = int.Parse(txtEID.Text);
+                negocio.eliminar(int.Parse(txtEID.Text));
+                Response.Redirect("Productos.aspx");
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+
+            }
+            
 
         }
     }

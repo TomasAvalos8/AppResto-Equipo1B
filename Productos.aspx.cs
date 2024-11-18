@@ -11,6 +11,7 @@ namespace Resto
 {
     public partial class Productos : System.Web.UI.Page
     {
+        //--Seleccionado genera un bool para controlar que este cargado antes de modificar--
         public bool seleccionado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {

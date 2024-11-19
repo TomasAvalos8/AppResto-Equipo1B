@@ -32,38 +32,56 @@
       
     </ul>
 
-    <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab">
-    <table class="table table-bordered border-primary">
-        <thead>
-            <tr>
-                <th scope="col">Num Pedido</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Ramiro Blanco </td>
-                <td>Milanesa con papas fritas </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Tomas Avalos</td>
-                <td>Canelones</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td >Claudio Blanco</td>
-                <td >Hamburguesa</td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
-    <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
-    <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+
+        <div class="tab-content mt-3">
+    <!-- Sección de mesas -->
+    <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab">
+        <div style="display: flex; ">
+
+            <!-- Parte de la tabla (2/3 del espacio) -->
+            <div style="flex: 2; padding: 10px; overflow-y: auto; background-color: #ffffff;">
+                <table class="table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Num Pedido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ramiro Blanco</td>
+                            <td>Milanesa con papas fritas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Tomas Avalos</td>
+                            <td>Canelones</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Claudio Blanco</td>
+                            <td>Hamburguesa</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
+                <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
+                <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+            </div>
+
+            <!-- Parte de los botones (1/3 del espacio) -->
+            <div style="flex: 1; padding: 10px; background-color: #e9ecef; display: flex; flex-direction: column; gap: 10px;">
+            </div>
+
         </div>
+    </div>
+</div>
+
+
+
+
         <div class="tab-pane fade" id="mostrador" role="tabpanel" >
             <p>Contenido de la segunda pestaña.</p>
         </div>

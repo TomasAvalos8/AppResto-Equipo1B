@@ -64,6 +64,9 @@
     <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
     <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
         </div>
+
+
+
         <div class="tab-pane fade" id="mostrador" role="tabpanel" >
             <p>Contenido de la segunda pestaña.</p>
         </div>

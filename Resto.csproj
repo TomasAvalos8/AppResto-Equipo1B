@@ -72,6 +72,7 @@
     <Content Include="FormularioModiProducto.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="JS.js" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Personalizar.aspx" />
     <Content Include="Productos.aspx" />

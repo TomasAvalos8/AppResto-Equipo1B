@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Inherits="Resto.Pedidos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Estilos.css" rel="stylesheet" />
+<%--    <link href="Estilos.css" rel="stylesheet" />--%>
+<%--    <script src="JS.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<div class="bg-dark text-white p-2">
@@ -34,32 +35,16 @@
 
     <div class="tab-content mt-3">
         <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab">
-    <table class="table table-bordered border-primary">
-        <thead>
-            <tr>
-                <th scope="col">Num Pedido</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Ramiro Blanco </td>
-                <td>Milanesa con papas fritas </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Tomas Avalos</td>
-                <td>Canelones</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td >Claudio Blanco</td>
-                <td >Hamburguesa</td>
-            </tr>
-        </tbody>
-    </table>
+<%--    <asp:Panel ID="PanelButtons" runat="server" CssClass="button-container">
+
+
+
+
+
+
+
+
+    </asp:Panel>--%>
     <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
     <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
     <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
@@ -163,6 +148,5 @@
     
 
   
-
 
 </asp:Content>

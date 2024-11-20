@@ -11,21 +11,14 @@ namespace Resto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-
-
+            if (IsPostBack)
+            {
+                string diseno = hfDiseno.Value;
+                // Aquí puedes guardar 'diseno' en una base de datos
+                Response.Write("Diseño recibido: " + diseno);
+            }
         }
-        protected void BtnCelda_Click(object sender, EventArgs e)
-        {
-            // Obtener el control que disparó el evento
-            LinkButton clickedButton = (LinkButton)sender;
 
-            // Obtener el argumento del comando (CommandArgument)
-            string cellId = clickedButton.CommandArgument;
-
-            // Lógica específica para la celda seleccionada
-            Response.Write($"Hiciste clic en la celda con ID: {cellId}");
-        }
 
 
     }

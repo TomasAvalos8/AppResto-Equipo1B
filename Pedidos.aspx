@@ -38,30 +38,127 @@
     <div class="tab-content mt-3">
         <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab" >
 
-
-
-            <table border="1">
-    <tr>
-        <td>
-            <asp:LinkButton ID="btnCelda1" runat="server" Text="Celda 1" OnClick="BtnCelda_Click" CommandArgument="1">
-
-
-
-            </asp:LinkButton>
-        </td>
-        <td>
-            <asp:LinkButton ID="btnCelda2" runat="server" Text="Celda 2" OnClick="BtnCelda_Click" CommandArgument="2"></asp:LinkButton>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <asp:LinkButton ID="btnCelda3" runat="server" Text="Celda 3" OnClick="BtnCelda_Click" CommandArgument="3"></asp:LinkButton>
-        </td>
-        <td>
-            <asp:LinkButton ID="btnCelda4" runat="server" Text="Celda 4" OnClick="BtnCelda_Click" CommandArgument="4"></asp:LinkButton>
-        </td>
-    </tr>
+            <table id="tablaMesas" border="1" style="width: 100%; border-collapse: collapse;">
+    <tbody>
+        <!-- Generar tabla dinámica -->
+    </tbody>
 </table>
+
+<div style="margin-top: 20px;">
+    <button id="btnAgregarMesa">Agregar Mesa</button>
+    <button id="btnGuardar">Guardar Diseño</button>
+</div>
+
+
+            <script>
+                // Configuración inicial de filas y columnas
+                const filas = 5; // Número de filas
+                const columnas = 5; // Número de columnas
+                const tabla = document.querySelector("#tablaMesas tbody");
+
+                // Generar la tabla inicial
+                for (let i = 0; i < filas; i++) {
+                    const fila = document.createElement("tr");
+                    for (let j = 0; j < columnas; j++) {
+                        const celda = document.createElement("td");
+                        celda.style.width = "50px";
+                        celda.style.height = "50px";
+                        celda.style.border = "1px solid black";
+                        celda.style.textAlign = "center";
+                        celda.style.cursor = "pointer";
+
+                        // Evento para marcar como mesa
+                        celda.addEventListener("click", () => {
+                            if (celda.classList.contains("mesa")) {
+                                celda.classList.remove("mesa");
+                                celda.innerHTML = "";
+                            } else {
+                                celda.classList.add("mesa");
+                                celda.innerHTML = "Mesa";
+                            }
+                        });
+
+                        fila.appendChild(celda);
+                    }
+                    tabla.appendChild(fila);
+                }
+
+                // Guardar diseño (ejemplo en consola)
+                document.getElementById("btnGuardar").addEventListener("click", () => {
+                    const diseño = [];
+                    const filas = tabla.querySelectorAll("tr");
+                    filas.forEach((fila, i) => {
+                        const celdas = fila.querySelectorAll("td");
+                        celdas.forEach((celda, j) => {
+                            if (celda.classList.contains("mesa")) {
+                                diseño.push({ fila: i, columna: j });
+                            }
+                        });
+                    });
+                    console.log("Diseño guardado:", diseño);
+                });
+            </script>
+
+            <style>
+    .mesa {
+        background-color: lightblue;
+        font-weight: bold;
+        color: black;
+    }
+
+    #tablaMesas td:hover {
+        background-color: lightgray;
+    }
+</style>
+
+<script>
+    let dragged;
+
+    document.querySelectorAll("#tablaMesas td").forEach((celda) => {
+        celda.draggable = true;
+
+        celda.addEventListener("dragstart", (event) => {
+            dragged = event.target;
+        });
+
+        celda.addEventListener("dragover", (event) => {
+            event.preventDefault(); // Permitir soltar
+        });
+
+        celda.addEventListener("drop", (event) => {
+            event.preventDefault();
+            if (!event.target.classList.contains("mesa")) {
+                event.target.classList.add("mesa");
+                event.target.innerHTML = dragged.innerHTML;
+                dragged.classList.remove("mesa");
+                dragged.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+
+            <asp:HiddenField ID="hfDiseno" runat="server" />
+<button id="btnGuardarDiseno" onclick="guardarDiseno()">Guardar Diseño</button>
+
+<script>
+    function guardarDiseno() {
+        const diseño = [];
+        const filas = tabla.querySelectorAll("tr");
+        filas.forEach((fila, i) => {
+            const celdas = fila.querySelectorAll("td");
+            celdas.forEach((celda, j) => {
+                if (celda.classList.contains("mesa")) {
+                    diseño.push({ fila: i, columna: j });
+                }
+            });
+        });
+
+        // Guardar diseño en un campo oculto y enviarlo al servidor
+        document.getElementById("<%= hfDiseno.ClientID %>").value = JSON.stringify(diseño);
+        document.forms[0].submit();
+    }
+</script>
 
 
 

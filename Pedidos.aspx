@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <%--    <link href="Estilos.css" rel="stylesheet" />--%>
 <%--    <script src="JS.js"></script>--%>
+    <link href="Estilos.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<div class="bg-dark text-white p-2">
@@ -34,17 +36,36 @@
     </ul>
 
     <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab">
-<%--    <asp:Panel ID="PanelButtons" runat="server" CssClass="button-container">
+        <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab" >
+
+
+
+            <table border="1">
+    <tr>
+        <td>
+            <asp:LinkButton ID="btnCelda1" runat="server" Text="Celda 1" OnClick="BtnCelda_Click" CommandArgument="1">
+
+
+
+            </asp:LinkButton>
+        </td>
+        <td>
+            <asp:LinkButton ID="btnCelda2" runat="server" Text="Celda 2" OnClick="BtnCelda_Click" CommandArgument="2"></asp:LinkButton>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <asp:LinkButton ID="btnCelda3" runat="server" Text="Celda 3" OnClick="BtnCelda_Click" CommandArgument="3"></asp:LinkButton>
+        </td>
+        <td>
+            <asp:LinkButton ID="btnCelda4" runat="server" Text="Celda 4" OnClick="BtnCelda_Click" CommandArgument="4"></asp:LinkButton>
+        </td>
+    </tr>
+</table>
 
 
 
 
-
-
-
-
-    </asp:Panel>--%>
     <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
     <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
     <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>

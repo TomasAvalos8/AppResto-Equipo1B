@@ -1,51 +1,48 @@
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".draggable-button");
 
-        buttons.forEach(button => {
-        button.setAttribute("draggable", "true");
+let tableId = 1; // Para identificar mesas
 
-            button.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setData("text/plain", null);
-    e.target.classList.add("dragging");
-            });
+document.getElementById('add-table').addEventListener('click', function () {
+    const mesa = document.createElement('div');
+    mesa.className = 'mesa';
+    mesa.id = 'mesa-' + tableId;
+    mesa.innerHTML = 'Mesa ' + tableId;
+    mesa.style.left = Math.random() * 80 + 'vw'; // Posición aleatoria
+    mesa.style.top = Math.random() * 80 + 'vh'; // Posición aleatoria
+    document.getElementById('mesa-container').appendChild(mesa);
+    initializeDrag(mesa);
+    tableId++;
+});
 
-            button.addEventListener("dragend", (e) => {
-                const button = e.target;
-    const container = document.querySelector(".button-container");
+document.addEventListener("DOMContentLoaded", function () {
+    const addTableButton = document.getElementById("add-table");
+    const panelButtons = document.querySelector(".button-container");
 
-    // Obtener las coordenadas del mouse
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left - button.offsetWidth / 2;
-    const y = e.clientY - rect.top - button.offsetHeight / 2;
+    let tableCount = 1; // Contador para los botones de mesas
 
-    // Mover el botón
-    button.style.left = `${x}px`;
-    button.style.top = `${y}px`;
-    button.classList.remove("dragging");
-            });
+    // Manejar el evento de clic en el botón "Agregar Mesa"
+    addTableButton.addEventListener("click", function () {
+        // Crear un nuevo botón
+        const newTableButton = document.createElement("button");
+        newTableButton.textContent = `Mesa ${tableCount}`;
+        newTableButton.className = "btn btn-secondary m-2";
+        newTableButton.id = `mesa-${tableCount}`;
+
+        // Opcional: Agregar evento de clic al nuevo botón
+        newTableButton.addEventListener("click", function () {
+            alert(`Mesa ${tableCount} seleccionada.`);
         });
-    });
 
+        // Agregar el nuevo botón al panel
+        panelButtons.appendChild(newTableButton);
 
-button.addEventListener("dragend", (e) => {
-    const button = e.target;
-    const container = document.querySelector(".button-container");
-
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left - button.offsetWidth / 2;
-    const y = e.clientY - rect.top - button.offsetHeight / 2;
-
-    // Mover el botón
-    button.style.left = `${x}px`;
-    button.style.top = `${y}px`;
-
-    // Enviar posición al servidor
-    fetch("/SaveButtonPosition", {
-        method: "POST",
-        body: JSON.stringify({ id: button.id, left: x, top: y }),
-        headers: {
-            "Content-Type": "application/json"
-        }
+        // Incrementar el contador
+        tableCount++;
     });
 });
+
+
+
+
+
+

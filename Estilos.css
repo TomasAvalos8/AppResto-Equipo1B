@@ -16,3 +16,24 @@
     border-radius: 5px;
 }
 /*-------------GENERADOR DE BOTONES----------------*/
+body {
+    font-family: Arial, sans-serif;
+}
+
+#mesa-container {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.mesa {
+    width: 80px;
+    height: 80px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    line-height: 80px; /* Centrar texto verticalmente */
+    position: absolute;
+    cursor: move;
+}

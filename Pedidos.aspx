@@ -54,66 +54,26 @@
 
         </ul>
 
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="mesas" role="tabpanel" aria-labelledby="home-tab" >
 
-        <table id="tablaMesas">
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+            <table id="tablaMesas" border="1" style="width: 100%; border-collapse: collapse;">
+    <tbody>
+        <!-- Generar tabla dinámica -->
+    </tbody>
+</table>
 
-        <div style="margin-top: 20px;">
-            <button id="btnGuardar">Guardar Diseño</button>
-        </div>
+<div style="margin-top: 20px;">
+    <button id="btnAgregarMesa">Agregar Mesa</button>
+    <button id="btnGuardar">Guardar Diseño</button>
+</div>
 
-        <script>
-            const celdas = document.querySelectorAll("#tablaMesas td");
+
+            <script>
+                // Configuración inicial de filas y columnas
+                const filas = 5; // Número de filas
+                const columnas = 5; // Número de columnas
+                const tabla = document.querySelector("#tablaMesas tbody");
 
             // Evento para seleccionar o deseleccionar una celda como mesa
             celdas.forEach((celda, index) => {
@@ -127,8 +87,44 @@
                     }
                 });
 
-                // Hacer celdas arrastrables
-                celda.draggable = true;
+                        fila.appendChild(celda);
+                    }
+                    tabla.appendChild(fila);
+                }
+
+                // Guardar diseño (ejemplo en consola)
+                document.getElementById("btnGuardar").addEventListener("click", () => {
+                    const diseño = [];
+                    const filas = tabla.querySelectorAll("tr");
+                    filas.forEach((fila, i) => {
+                        const celdas = fila.querySelectorAll("td");
+                        celdas.forEach((celda, j) => {
+                            if (celda.classList.contains("mesa")) {
+                                diseño.push({ fila: i, columna: j });
+                            }
+                        });
+                    });
+                    console.log("Diseño guardado:", diseño);
+                });
+            </script>
+
+            <style>
+    .mesa {
+        background-color: lightblue;
+        font-weight: bold;
+        color: black;
+    }
+
+    #tablaMesas td:hover {
+        background-color: lightgray;
+    }
+</style>
+
+<script>
+    let dragged;
+
+    document.querySelectorAll("#tablaMesas td").forEach((celda) => {
+        celda.draggable = true;
 
                 celda.addEventListener("dragstart", (event) => {
                     event.dataTransfer.setData("text/plain", index);
@@ -138,143 +134,146 @@
                     event.preventDefault();
                 });
 
-                celda.addEventListener("drop", (event) => {
-                    event.preventDefault();
-                    const draggedIndex = event.dataTransfer.getData("text/plain");
-                    const draggedCell = celdas[draggedIndex];
+        celda.addEventListener("drop", (event) => {
+            event.preventDefault();
+            if (!event.target.classList.contains("mesa")) {
+                event.target.classList.add("mesa");
+                event.target.innerHTML = dragged.innerHTML;
+                dragged.classList.remove("mesa");
+                dragged.innerHTML = "";
+            }
+        });
+    });
+</script>
 
-                    if (!celda.classList.contains("mesa")) {
-                        celda.classList.add("mesa");
-                        celda.innerHTML = draggedCell.innerHTML;
 
-                        draggedCell.classList.remove("mesa");
-                        draggedCell.innerHTML = "";
-                    }
-                });
+            <asp:HiddenField ID="hfDiseno" runat="server" />
+<button id="btnGuardarDiseno" onclick="guardarDiseno()">Guardar Diseño</button>
+
+<script>
+    function guardarDiseno() {
+        const diseño = [];
+        const filas = tabla.querySelectorAll("tr");
+        filas.forEach((fila, i) => {
+            const celdas = fila.querySelectorAll("td");
+            celdas.forEach((celda, j) => {
+                if (celda.classList.contains("mesa")) {
+                    diseño.push({ fila: i, columna: j });
+                }
             });
+        });
 
-            // Guardar diseño
-            document.getElementById("btnGuardar").addEventListener("click", () => {
-                const diseño = [];
-                celdas.forEach((celda, index) => {
-                    if (celda.classList.contains("mesa")) {
-                        const fila = Math.floor(index / 5); // 5 columnas
-                        const columna = index % 5;
-                        diseño.push({ fila, columna });
-                    }
-                });
-                console.log("Diseño guardado:", diseño);
-            });
-    </script>
+        // Guardar diseño en un campo oculto y enviarlo al servidor
+        document.getElementById("<%= hfDiseno.ClientID %>").value = JSON.stringify(diseño);
+        document.forms[0].submit();
+    }
+</script>
 
 
 
 
+    <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
+    <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
+    <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+        </div>
+        <div class="tab-pane fade" id="mostrador" role="tabpanel" >
+            <p>Contenido de la segunda pestaña.</p>
+        </div>
+
+        <div class="tab-pane fade" id="delivery" role="tabpanel">
+            <label>Pendientes</label>
+            <table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Num Pedido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Ramiro Blanco </td>
+            <td>Milanesa con papas fritas </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Tomas Avalos</td>
+            <td>Canelones</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td >Claudio Blanco</td>
+            <td >Hamburguesa</td>
+        </tr>
+    </tbody>
+</table>
+
+                        <label>En Preparacion</label>
+            <table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Num Pedido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Ramiro Blanco </td>
+            <td>Milanesa con papas fritas </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Tomas Avalos</td>
+            <td>Canelones</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td >Claudio Blanco</td>
+            <td >Hamburguesa</td>
+        </tr>
+    </tbody>
+</table>
 
 
-
-        <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
-        <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
-        <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
-    </div>
-    <div class="tab-pane fade" id="mostrador" role="tabpanel">
-        <p>Contenido de la segunda pestaña.</p>
-    </div>
-
-    <div class="tab-pane fade" id="delivery" role="tabpanel">
-        <label>Pendientes</label>
-        <table class="table table-bordered border-primary">
-            <thead>
-                <tr>
-                    <th scope="col">Num Pedido</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Ramiro Blanco </td>
-                    <td>Milanesa con papas fritas </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Tomas Avalos</td>
-                    <td>Canelones</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Claudio Blanco</td>
-                    <td>Hamburguesa</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <label>En Preparacion</label>
-        <table class="table table-bordered border-primary">
-            <thead>
-                <tr>
-                    <th scope="col">Num Pedido</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Ramiro Blanco </td>
-                    <td>Milanesa con papas fritas </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Tomas Avalos</td>
-                    <td>Canelones</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Claudio Blanco</td>
-                    <td>Hamburguesa</td>
-                </tr>
-            </tbody>
-        </table>
+                        <label>Pendientes</label>
+            <table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Num Pedido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Ramiro Blanco </td>
+            <td>Milanesa con papas fritas </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Tomas Avalos</td>
+            <td>Canelones</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td >Claudio Blanco</td>
+            <td >Hamburguesa</td>
+        </tr>
+    </tbody>
+</table>
 
 
-        <label>Pendientes</label>
-        <table class="table table-bordered border-primary">
-            <thead>
-                <tr>
-                    <th scope="col">Num Pedido</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Ramiro Blanco </td>
-                    <td>Milanesa con papas fritas </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Tomas Avalos</td>
-                    <td>Canelones</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Claudio Blanco</td>
-                    <td>Hamburguesa</td>
-                </tr>
-            </tbody>
-        </table>
-
-
-    </div>
-    <br />
+        </div>
+            <br />
     </div>
 </div>
 
-    
 
-  
+
+
 
 </asp:Content>

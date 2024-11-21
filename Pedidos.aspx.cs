@@ -13,7 +13,7 @@ namespace Resto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (IsPostBack)
             {
             if (!IsPostBack)
             {
@@ -52,42 +52,6 @@ namespace Resto
                 Session["ProductosTemp"] = value;
             }
         }
-        protected void btnAgregarPedido_Click(object sender, EventArgs e)
-        {
-            // Obtener los valores del modal
-            int productoId = int.Parse(ddlProducto.SelectedValue);
-            string nombreProducto = ddlProducto.SelectedItem.Text;
-            int cantidad = int.Parse(txtCantidad.Text);
-           // decimal precio = ObtenerPrecioProducto(productoId); // Método para obtener el precio del producto
-
-            // Crear el producto y añadirlo a la lista temporal
-            var productoPedido = new ProductoPedido
-            {
-                ProductoId = productoId,
-                NombreProducto = nombreProducto,
-                Cantidad = cantidad,
-               // Precio = precio
-            };
-
-            ProductosTemp.Add(productoPedido);
-
-            // Actualizar el GridView con los productos agregados
-            gvProductos.DataSource = ProductosTemp;
-            gvProductos.DataBind();
-
-            // Limpiar los campos del modal
-            txtCantidad.Text = string.Empty;
-            ddlProducto.SelectedIndex = 0;
-        }
-
-        protected void btnAgregarProducto_Click(object sender, EventArgs e)
-        {
-            // Validar entrada
-            if (ddlProducto.SelectedValue == string.Empty || string.IsNullOrWhiteSpace(txtCantidad.Text))
-            {
-                // Agregar lógica para mostrar un mensaje de error si es necesario
-                return;
-            }
 
             // Obtener datos del producto
             int productoId = int.Parse(ddlProducto.SelectedValue);

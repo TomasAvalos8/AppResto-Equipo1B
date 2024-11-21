@@ -17,9 +17,7 @@ namespace Resto
             {
             if (!IsPostBack)
             {
-                string diseno = hfDiseno.Value;
-                // Aquí puedes guardar 'diseno' en una base de datos
-                Response.Write("Diseño recibido: " + diseno);
+
 
                     ProductoNegocio negocio = new ProductoNegocio();
                     List<Producto> lista = negocio.listar();

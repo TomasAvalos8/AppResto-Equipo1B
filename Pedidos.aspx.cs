@@ -11,12 +11,9 @@ namespace Resto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                string diseno = hfDiseno.Value;
-                // Aquí puedes guardar 'diseno' en una base de datos
-                Response.Write("Diseño recibido: " + diseno);
-            }
+            
+
+
         }
 
 
